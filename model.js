@@ -23,16 +23,16 @@ var model = function (fields) {
     for (var index = 0; index < this.fields.length; index++) {
 
         /* Upper Case First */
-        var method = this.fields[index].charAt(0).toUpperCase() + string.slice(1);
+        var method = (this.fields[index].charAt(0).toUpperCase() + string.slice(1)).toLowerCase();
 
         /* Create Setter Method */
-        this[("Set" + method)] = function (value) {
+        this[("set" + method)] = function (value) {
             this.set(this.fields[index], value);
             return this;
         };
 
         /* Create Getter Method */
-        this[("Get" + method)] = function () {
+        this[("get" + method)] = function () {
             return this.get(this.fields[index]);
         }
     }
