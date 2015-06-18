@@ -23,7 +23,7 @@ var model = function (fields) {
     for (var index = 0; index < this.fields.length; index++) {
 
         /* Upper Case First */
-        var method = (this.fields[index].charAt(0).toUpperCase() + string.slice(1)).toLowerCase();
+        var method = (this.fields[index].charAt(0).toUpperCase() + this.fields[index].slice(1)).toLowerCase();
 
         /* Create Setter Method */
         this[("set" + method)] = function (value) {
