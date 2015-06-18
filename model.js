@@ -26,14 +26,19 @@ var model = function (fields) {
         var method = (this.fields[index].charAt(0).toUpperCase() + this.fields[index].slice(1)).toLowerCase();
 
         /* Create Setter Method */
-        this[("set" + method)] = function (value) {
-            this.set(this.fields[index], value);
-            return this;
-        };
+        this[("set" + method)] = function(key) {
+            /* Return a function (Closure issues) */
+            return function (value) {    
+                this.set(key, value);
+                return this;
+            }
+        }(this.fields[index]);
 
         /* Create Getter Method */
-        this[("get" + method)] = function () {
-            return this.get(this.fields[index]);
-        }
+        this[("get" + method)] = function (key) {
+            return function () {
+                return this.get(key);
+            }
+        }(this.fields[index]);
     }
 };
